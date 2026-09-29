@@ -6,321 +6,243 @@
 <title>Chetanaditya Neelam — AI Engineer</title>
 <meta name="description" content="Chetanaditya Neelam — Agentic AI, GenAI & ML Engineer. Published researcher in fake news detection. Building RAG systems, autonomous agents, and NLP pipelines.">
 <style>
-@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Inter:wght@400;700;800;900&display=swap');
 
-:root{
-  --bg:#0a0e0c;
-  --bg-raised:#0f1511;
-  --bg-card:rgba(20,28,23,0.55);
-  --line:#1c2620;
-  --line-soft:#161e19;
-  --text:#e8e6df;
-  --text-dim:#8b948c;
-  --text-faint:#5b6359;
-  --mint:#6ee7b0;
-  --mint-dim:#3a8a68;
-  --amber:#d4a373;
-  --amber-dim:#8a6a4d;
-  --mono:'IBM Plex Mono',monospace;
-  --sans:'Inter',sans-serif;
+:root {
+  --bg: #05070a;
+  --surface: #0f1218;
+  --accent: #00ffaa;
+  --secondary: #7e8da8;
+  --text: #e2e8f0;
+  --text-dim: #94a3b8;
+  --text-faint: #475569;
+  --mono: 'JetBrains Mono', monospace;
+  --sans: 'Inter', sans-serif;
+  --border: rgba(0, 255, 170, 0.15);
 }
 
-*{margin:0;padding:0;box-sizing:border-box;}
-html{scroll-behavior:smooth;}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
 
-@media (prefers-reduced-motion: reduce){
-  html{scroll-behavior:auto;}
-  *{animation-duration:0.01ms !important; transition-duration:0.01ms !important;}
-}
-
-body{
-  background:var(--bg);
-  color:var(--text);
-  font-family:var(--sans);
-  font-weight:400;
-  line-height:1.65;
-  overflow-x:hidden;
-  background-image:
-    radial-gradient(ellipse 800px 500px at 85% -5%, rgba(110,231,176,0.07), transparent),
-    radial-gradient(ellipse 600px 400px at 5% 95%, rgba(212,163,115,0.05), transparent);
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--mono);
+  font-weight: 400;
+  line-height: 1.6;
+  overflow-x: hidden;
 }
 
-::selection{background:var(--mint); color:#06100a;}
+::selection { background: var(--accent); color: #000; }
 
-a{color:inherit; text-decoration:none;}
-:focus-visible{outline:2px solid var(--mint); outline-offset:3px; border-radius:2px;}
+a { color: inherit; text-decoration: none; transition: color 0.2s ease; }
 
-.wrap{max-width:1080px; margin:0 auto; padding:0 6%;}
+.wrap { max-width: 1200px; margin: 0 auto; padding: 0 4%; }
 
-/* ---------- noise / scanline texture ---------- */
-.grain{
-  position:fixed; inset:0; pointer-events:none; z-index:2; opacity:0.025; mix-blend-mode:overlay;
-  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+/* ---------- Header ---------- */
+header {
+  position: sticky; top: 0; z-index: 100;
+  background: rgba(5, 7, 10, 0.8);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border);
 }
+nav {
+  display: flex; align-items: center; justify-content: space-between;
+  max-width: 1200px; margin: 0 auto; padding: 1rem 4%;
+}
+.logo {
+  font-family: var(--mono); font-weight: 700; font-size: 0.9rem;
+  display: flex; align-items: center; gap: 0.5rem;
+}
+.logo .dot { width: 6px; height: 6px; background: var(--accent); box-shadow: 0 0 8px var(--accent); }
+.logo .path { color: var(--secondary); }
 
-/* ---------- header ---------- */
-header{
-  position:sticky; top:0; z-index:100;
-  background:rgba(10,14,12,0.75);
-  backdrop-filter:blur(14px) saturate(140%);
-  border-bottom:1px solid var(--line);
+.nav-links { display: flex; list-style: none; gap: 2rem; align-items: center; }
+.nav-links a {
+  font-family: var(--mono); font-size: 0.75rem; color: var(--text-dim);
+  text-transform: lowercase;
 }
-nav{
-  display:flex; align-items:center; justify-content:space-between;
-  max-width:1080px; margin:0 auto; padding:1.1rem 6%;
-}
-.logo{
-  font-family:var(--mono); font-weight:600; font-size:0.95rem; letter-spacing:0.02em;
-  color:var(--text); display:flex; align-items:center; gap:0.5rem;
-}
-.logo .dot{width:7px; height:7px; border-radius:50%; background:var(--mint); box-shadow:0 0 8px var(--mint); flex-shrink:0;}
-.logo .path{color:var(--text-dim);}
+.nav-links a::before { content: '~/'; color: var(--text-faint); }
+.nav-links a:hover, .nav-links a.active { color: var(--accent); }
 
-.nav-links{display:flex; list-style:none; gap:2.2rem; align-items:center;}
-.nav-links a{
-  font-family:var(--mono); font-size:0.8rem; color:var(--text-dim);
-  letter-spacing:0.03em; transition:color 0.25s ease; position:relative; padding:0.3rem 0;
+.resume-link {
+  border: 1px solid var(--border); padding: 0.5rem 1rem;
+  color: var(--text) !important;
 }
-.nav-links a::before{content:'~/'; color:var(--text-faint);}
-.nav-links a:hover, .nav-links a.active{color:var(--mint);}
-.nav-links .resume-link{
-  border:1px solid var(--line); padding:0.5rem 1rem; border-radius:0.4rem; color:var(--text);
-}
-.nav-links .resume-link::before{content:none;}
-.nav-links .resume-link:hover{border-color:var(--mint); color:var(--mint); background:rgba(110,231,176,0.06);}
+.resume-link::before { content: none !important; }
+.resume-link:hover { border-color: var(--accent); color: var(--accent) !important; }
 
-.menu-toggle{
-  display:none; flex-direction:column; gap:5px; cursor:pointer; background:none; border:none;
-  padding:0.4rem; z-index:101;
+/* ---------- Hero ---------- */
+.hero {
+  padding: 8rem 0 6rem;
+  position: relative;
 }
-.menu-toggle span{width:24px; height:2px; background:var(--text); transition:all 0.3s cubic-bezier(0.4,0,0.2,1); display:block;}
-.menu-toggle.open span:nth-child(1){transform:translateY(7px) rotate(45deg);}
-.menu-toggle.open span:nth-child(2){opacity:0;}
-.menu-toggle.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg);}
-
-/* ---------- hero ---------- */
-.hero{
-  position:relative; padding:6.5rem 0 5rem;
-  min-height:90vh; display:flex; align-items:center;
+.hero-layout {
+  display: grid;
+  grid-template-columns: 1fr 300px;
+  gap: 4rem;
 }
-.hero-grid{
-  display:grid; grid-template-columns:1.15fr 0.85fr; gap:3.5rem; align-items:center; width:100%;
+.hero-main h1 {
+  font-family: var(--sans); font-weight: 900; font-size: 4rem;
+  line-height: 1.1; letter-spacing: -0.03em; margin-bottom: 2rem;
 }
-.eyebrow{
-  font-family:var(--mono); font-size:0.78rem; color:var(--mint); letter-spacing:0.08em;
-  display:flex; align-items:center; gap:0.6rem; margin-bottom:1.6rem;
-}
-.eyebrow .blink{width:7px; height:14px; background:var(--mint); animation:blink 1.1s steps(2) infinite;}
-@keyframes blink{50%{opacity:0;}}
-
-.hero h1{
-  font-family:var(--sans); font-weight:800; font-size:3.4rem; line-height:1.08;
-  letter-spacing:-0.02em; margin-bottom:1.4rem; color:var(--text);
-}
-.hero h1 .accent{color:var(--mint);}
-.hero .role-line{
-  font-family:var(--mono); font-size:1.05rem; color:var(--text-dim); margin-bottom:1.6rem;
-  display:flex; flex-wrap:wrap; gap:0.5rem 0.9rem; align-items:center;
-}
-.hero .role-line span{position:relative; padding-left:1rem;}
-.hero .role-line span::before{content:'›'; position:absolute; left:0; color:var(--amber);}
-.hero .role-line span:first-child{padding-left:0;}
-.hero .role-line span:first-child::before{content:none;}
-
-.hero p.lede{
-  font-size:1.08rem; color:var(--text-dim); max-width:540px; margin-bottom:2.2rem; line-height:1.8;
+.hero-main h1 span { color: var(--accent); }
+.hero-main .lede {
+  font-size: 1.1rem; color: var(--text-dim); max-width: 600px;
+  margin-bottom: 3rem; font-family: var(--sans);
 }
 
-.hero-ctas{display:flex; gap:1rem; flex-wrap:wrap; margin-bottom:2.6rem;}
-.btn{
-  font-family:var(--mono); font-size:0.85rem; font-weight:500; padding:0.85rem 1.6rem;
-  border-radius:0.5rem; cursor:pointer; transition:all 0.25s cubic-bezier(0.4,0,0.2,1);
-  letter-spacing:0.02em; display:inline-flex; align-items:center; gap:0.5rem; border:1px solid transparent;
+.hero-annotations {
+  display: flex; flex-direction: column; gap: 2rem;
+  border-left: 1px solid var(--border); padding-left: 2rem;
 }
-.btn.primary{background:var(--mint); color:#06140d;}
-.btn.primary:hover{box-shadow:0 0 0 1px var(--mint), 0 10px 30px rgba(110,231,176,0.25); transform:translateY(-2px);}
-.btn.ghost{border-color:var(--line); color:var(--text);}
-.btn.ghost:hover{border-color:var(--mint); color:var(--mint); transform:translateY(-2px);}
+.annotation { display: flex; flex-direction: column; gap: 0.2rem; }
+.annotation .val { font-size: 1.5rem; font-weight: 700; color: var(--accent); }
+.annotation .lbl { font-size: 0.7rem; color: var(--text-faint); text-transform: uppercase; }
 
-.hero-stats{display:flex; gap:2.2rem; flex-wrap:wrap;}
-.stat{display:flex; flex-direction:column; gap:0.2rem;}
-.stat .num{font-family:var(--mono); font-size:1.5rem; font-weight:600; color:var(--text);}
-.stat .num .unit{color:var(--mint); font-size:1.1rem;}
-.stat .label{font-size:0.78rem; color:var(--text-faint); letter-spacing:0.02em;}
+.hero-ctas { display: flex; gap: 1rem; }
+.btn {
+  font-family: var(--mono); font-size: 0.8rem; padding: 0.75rem 1.5rem;
+  cursor: pointer; transition: all 0.2s ease; border: 1px solid var(--border);
+}
+.btn.primary { background: var(--accent); color: #000; border-color: var(--accent); font-weight: 700; }
+.btn.primary:hover { box-shadow: 0 0 20px rgba(0, 255, 170, 0.3); transform: translateY(-2px); }
+.btn.ghost { color: var(--text); }
+.btn.ghost:hover { border-color: var(--accent); color: var(--accent); }
 
-/* terminal signature element */
-.terminal{
-  background:rgba(15,21,17,0.7); border:1px solid var(--line); border-radius:0.7rem;
-  font-family:var(--mono); font-size:0.82rem; overflow:hidden;
-  box-shadow:0 30px 60px -20px rgba(0,0,0,0.6), inset 0 1px 0 rgba(255,255,255,0.03);
-  backdrop-filter:blur(10px);
+/* ---------- Terminal Boot ---------- */
+.boot-screen {
+  position: fixed; inset: 0; background: var(--bg); z-index: 1000;
+  display: flex; align-items: center; justify-content: center;
+  font-family: var(--mono);
 }
-.terminal-bar{
-  display:flex; align-items:center; gap:0.5rem; padding:0.8rem 1rem; border-bottom:1px solid var(--line);
-  background:rgba(255,255,255,0.015);
+.boot-content {
+  width: 100%; max-width: 600px; padding: 2rem;
+  color: var(--accent); font-size: 0.85rem;
 }
-.terminal-bar .tdot{width:10px; height:10px; border-radius:50%;}
-.terminal-bar .tdot:nth-child(1){background:#ff5f57;}
-.terminal-bar .tdot:nth-child(2){background:#febc2e;}
-.terminal-bar .tdot:nth-child(3){background:#28c840;}
-.terminal-bar .ttitle{margin-left:0.5rem; color:var(--text-faint); font-size:0.75rem;}
-.terminal-body{padding:1.3rem 1.2rem; min-height:260px;}
-.terminal-line{color:var(--text-dim); margin-bottom:0.65rem; opacity:0; animation:typeIn 0.4s ease forwards;}
-.terminal-line .prompt{color:var(--mint);}
-.terminal-line .key{color:var(--amber);}
-.terminal-line .val{color:var(--text);}
-.terminal-line.muted{color:var(--text-faint);}
-@keyframes typeIn{to{opacity:1;}}
-.cursor-blink{display:inline-block; width:7px; height:1em; background:var(--mint); vertical-align:middle; animation:blink 1s steps(2) infinite;}
+.boot-line { margin-bottom: 0.4rem; opacity: 0; animation: fadeIn 0.1s forwards; }
+@keyframes fadeIn { to { opacity: 1; } }
 
-/* ---------- sections shared ---------- */
-section{padding:6rem 0; position:relative;}
-.section-head{margin-bottom:3rem;}
-.tag-label{
-  font-family:var(--mono); font-size:0.78rem; color:var(--mint); letter-spacing:0.08em;
-  display:block; margin-bottom:0.8rem;
+/* ---------- Sections ---------- */
+section { padding: 6rem 0; border-top: 1px solid var(--border); }
+.section-label {
+  font-family: var(--mono); font-size: 0.7rem; color: var(--accent);
+  margin-bottom: 2rem; display: block;
 }
-.tag-label::before{content:'// ';color:var(--text-faint);}
-h2{
-  font-family:var(--sans); font-weight:800; font-size:2.4rem; letter-spacing:-0.015em; color:var(--text);
-}
-.divider{border:none; border-top:1px solid var(--line); margin:0;}
-
-/* ---------- about ---------- */
-.about-grid{display:grid; grid-template-columns:1fr 1fr; gap:3.5rem; align-items:start;}
-.about-text p{color:var(--text-dim); margin-bottom:1.3rem; font-size:1.02rem;}
-.about-text strong{color:var(--text); font-weight:600;}
-.highlight-card{
-  border:1px solid var(--line); border-radius:0.6rem; padding:1.1rem 1.3rem; margin-bottom:0.9rem;
-  background:var(--bg-card); display:flex; gap:1rem; align-items:flex-start;
-}
-.highlight-card .hc-icon{
-  font-family:var(--mono); color:var(--amber); font-size:0.85rem; flex-shrink:0; margin-top:0.15rem;
-}
-.highlight-card .hc-body strong{display:block; color:var(--text); font-size:0.95rem; margin-bottom:0.2rem;}
-.highlight-card .hc-body span{color:var(--text-dim); font-size:0.88rem;}
-
-.skills-block h3{
-  font-family:var(--mono); font-size:0.85rem; color:var(--text-dim); letter-spacing:0.04em;
-  margin-bottom:1rem; text-transform:uppercase;
-}
-.skill-groups{display:flex; flex-direction:column; gap:1.4rem;}
-.skill-group-label{font-size:0.78rem; color:var(--text-faint); font-family:var(--mono); margin-bottom:0.6rem;}
-.skills{display:flex; flex-wrap:wrap; gap:0.6rem;}
-.skill-tag{
-  font-family:var(--mono); font-size:0.82rem; padding:0.5rem 0.9rem; border-radius:0.4rem;
-  border:1px solid var(--line); color:var(--text-dim); transition:all 0.25s ease; cursor:default;
-  background:rgba(255,255,255,0.015);
-}
-.skill-tag:hover{border-color:var(--mint); color:var(--mint); background:rgba(110,231,176,0.06); transform:translateY(-2px);}
-
-/* ---------- research ---------- */
-.research-card{
-  border:1px solid var(--amber-dim); border-radius:0.8rem; padding:2rem;
-  background:linear-gradient(180deg, rgba(212,163,115,0.06), transparent);
-  display:grid; grid-template-columns:auto 1fr; gap:1.6rem; align-items:start;
-}
-.research-card .r-badge{
-  font-family:var(--mono); font-size:0.7rem; color:var(--amber); border:1px solid var(--amber-dim);
-  padding:0.4rem 0.7rem; border-radius:0.4rem; white-space:nowrap; letter-spacing:0.04em;
-}
-.research-card h3{font-size:1.25rem; font-weight:700; margin-bottom:0.6rem; color:var(--text);}
-.research-card p{color:var(--text-dim); font-size:0.96rem; margin-bottom:1rem;}
-.research-meta{display:flex; gap:1.6rem; flex-wrap:wrap;}
-.research-meta div{display:flex; flex-direction:column; gap:0.15rem;}
-.research-meta .rm-num{font-family:var(--mono); color:var(--amber); font-weight:600; font-size:1.1rem;}
-.research-meta .rm-label{font-size:0.75rem; color:var(--text-faint);}
-
-/* ---------- projects ---------- */
-.projects-grid{display:grid; grid-template-columns:repeat(2,1fr); gap:1.8rem;}
-.project-card{
-  border:1px solid var(--line); border-radius:0.8rem; overflow:hidden;
-  background:var(--bg-card); backdrop-filter:blur(8px);
-  transition:all 0.35s cubic-bezier(0.4,0,0.2,1); display:flex; flex-direction:column;
-}
-.project-card:hover{border-color:var(--mint-dim); transform:translateY(-5px); box-shadow:0 25px 50px -20px rgba(0,0,0,0.5);}
-.project-head{
-  padding:1.4rem 1.6rem; border-bottom:1px solid var(--line);
-  display:flex; justify-content:space-between; align-items:center;
-}
-.project-head .p-icon{font-family:var(--mono); font-size:0.78rem; color:var(--text-faint);}
-.project-head .p-status{font-family:var(--mono); font-size:0.7rem; color:var(--mint); display:flex; align-items:center; gap:0.4rem;}
-.project-head .p-status::before{content:''; width:6px; height:6px; border-radius:50%; background:var(--mint); box-shadow:0 0 6px var(--mint);}
-.project-body{padding:1.6rem; flex:1; display:flex; flex-direction:column;}
-.project-body h3{font-size:1.2rem; font-weight:700; margin-bottom:0.7rem; color:var(--text);}
-.project-body p{color:var(--text-dim); font-size:0.93rem; margin-bottom:1.3rem; flex:1;}
-.project-tags{display:flex; flex-wrap:wrap; gap:0.5rem; margin-bottom:1.3rem;}
-.ptag{font-family:var(--mono); font-size:0.72rem; color:var(--amber); border:1px solid var(--amber-dim); padding:0.3rem 0.65rem; border-radius:0.35rem; background:rgba(212,163,115,0.05);}
-.project-links{display:flex; gap:1.3rem; padding-top:1.2rem; border-top:1px solid var(--line);}
-.project-links a{font-family:var(--mono); font-size:0.82rem; color:var(--text); display:flex; align-items:center; gap:0.4rem; transition:color 0.25s ease;}
-.project-links a:hover{color:var(--mint);}
-.project-links a::after{content:'→'; transition:transform 0.25s ease;}
-.project-links a:hover::after{transform:translateX(3px);}
-
-/* ---------- contact ---------- */
-#contact{text-align:center;}
-.contact-inner{max-width:620px; margin:0 auto;}
-#contact p.lede{color:var(--text-dim); font-size:1.05rem; margin-bottom:2.2rem;}
-.contact-ctas{display:flex; justify-content:center; gap:1rem; flex-wrap:wrap; margin-bottom:2.8rem;}
-.social-row{display:flex; justify-content:center; gap:1.1rem;}
-.social-link{
-  width:52px; height:52px; border-radius:0.6rem; border:1px solid var(--line);
-  display:flex; align-items:center; justify-content:center; font-family:var(--mono); font-size:0.78rem;
-  color:var(--text-dim); transition:all 0.3s cubic-bezier(0.4,0,0.2,1);
-}
-.social-link:hover{border-color:var(--mint); color:var(--mint); transform:translateY(-4px); box-shadow:0 10px 25px rgba(110,231,176,0.15);}
-
-footer{border-top:1px solid var(--line); padding:2.2rem 6%; text-align:center;}
-footer p{font-family:var(--mono); font-size:0.78rem; color:var(--text-faint);}
-
-/* ---------- scroll reveal ---------- */
-.reveal{opacity:0; transform:translateY(24px); transition:opacity 0.7s ease, transform 0.7s cubic-bezier(0.16,1,0.3,1);}
-.reveal.in{opacity:1; transform:translateY(0);}
-
-/* ---------- mobile ---------- */
-@media (max-width: 860px){
-  .hero-grid{grid-template-columns:1fr; gap:2.5rem;}
-  .hero h1{font-size:2.4rem;}
-  .about-grid{grid-template-columns:1fr; gap:2.5rem;}
-  .projects-grid{grid-template-columns:1fr;}
-  .research-card{grid-template-columns:1fr;}
-  h2{font-size:1.9rem;}
+h2 {
+  font-family: var(--sans); font-weight: 800; font-size: 2.5rem;
+  margin-bottom: 3rem; letter-spacing: -0.02em;
 }
 
-@media (max-width: 680px){
-  .menu-toggle{display:flex;}
-  .nav-links{
-    position:fixed; top:0; right:0; height:100vh; width:78%; max-width:320px;
-    background:rgba(10,14,12,0.97); backdrop-filter:blur(20px);
-    flex-direction:column; justify-content:center; align-items:flex-start;
-    gap:2rem; padding:2rem 2.5rem; border-left:1px solid var(--line);
-    transform:translateX(100%); transition:transform 0.4s cubic-bezier(0.4,0,0.2,1);
-    z-index:100;
+/* ---------- About / Modules ---------- */
+.about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; }
+.about-text p { margin-bottom: 1.5rem; color: var(--text-dim); font-family: var(--sans); }
+.about-text strong { color: var(--text); }
+
+.module-grid { display: grid; gap: 1rem; }
+.module {
+  border: 1px solid var(--border); padding: 1.5rem;
+  position: relative; transition: all 0.3s ease;
+}
+.module::before, .module::after {
+  content: ''; position: absolute; width: 8px; height: 8px; border-color: var(--accent);
+}
+.module::before { top: -1px; left: -1px; border-top: 2px solid; border-left: 2px solid; }
+.module::after { bottom: -1px; right: -1px; border-bottom: 2px solid; border-right: 2px solid; }
+.module:hover { border-color: var(--accent); background: rgba(0, 255, 170, 0.03); }
+.module h3 { font-size: 0.9rem; margin-bottom: 0.5rem; color: var(--text); }
+.module p { font-size: 0.8rem; color: var(--text-dim); }
+
+.skills-block { margin-top: 3rem; }
+.skill-row { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 1.5rem; }
+.skill-row span { font-size: 0.65rem; color: var(--text-faint); margin-right: 0.5rem; text-transform: uppercase; }
+.skill-tag {
+  font-family: var(--mono); font-size: 0.75rem; padding: 0.3rem 0.6rem;
+  border: 1px solid var(--border); color: var(--text-dim);
+}
+.skill-tag:hover { border-color: var(--accent); color: var(--accent); }
+
+/* ---------- Research ---------- */
+.publication {
+  border: 1px solid var(--border); padding: 2.5rem;
+  background: var(--surface);
+}
+.pub-meta {
+  display: flex; gap: 2rem; margin-bottom: 2rem;
+  font-size: 0.7rem; color: var(--secondary);
+}
+.pub-meta b { color: var(--accent); }
+.pub-body h3 { font-family: var(--sans); font-size: 1.8rem; margin-bottom: 1rem; }
+.pub-body p { color: var(--text-dim); font-family: var(--sans); max-width: 800px; }
+
+/* ---------- Projects ---------- */
+.projects-container { display: flex; flex-direction: column; gap: 4rem; }
+.project-entry {
+  display: grid; grid-template-columns: 200px 1fr; gap: 2rem;
+  padding: 2rem 0; border-bottom: 1px solid var(--border);
+}
+.project-meta {
+  display: flex; flex-direction: column; gap: 0.5rem;
+}
+.project-version { font-size: 0.7rem; color: var(--accent); font-weight: 700; }
+.project-status { font-size: 0.65rem; color: var(--text-faint); }
+
+.project-main h3 { font-family: var(--sans); font-size: 1.5rem; margin-bottom: 1rem; }
+.project-main p { color: var(--text-dim); font-family: var(--sans); margin-bottom: 1.5rem; }
+
+.project-footer { display: flex; gap: 2rem; align-items: center; }
+.tech-stack {
+  display: flex; gap: 0.5rem; opacity: 0; transition: opacity 0.3s ease;
+}
+.project-entry:hover .tech-stack { opacity: 1; }
+.tech-pill { font-size: 0.65rem; color: var(--secondary); border: 1px solid var(--border); padding: 0.1rem 0.4rem; }
+
+.featured-project {
+  background: var(--surface); padding: 3rem; border: 1px solid var(--accent);
+  display: grid; grid-template-columns: 1fr 1fr; gap: 3rem;
+}
+.featured-project h3 { font-family: var(--sans); font-size: 2rem; margin-bottom: 1.5rem; }
+.featured-project p { font-family: var(--sans); color: var(--text-dim); margin-bottom: 2rem; }
+
+/* ---------- Contact ---------- */
+.contact-grid {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 4rem;
+  align-items: center;
+}
+.contact-info h2 { margin-bottom: 1rem; }
+.contact-info p { color: var(--text-dim); font-family: var(--sans); margin-bottom: 2rem; }
+.social-links { display: flex; gap: 1rem; }
+.social-link {
+  border: 1px solid var(--border); padding: 0.5rem 1rem; font-size: 0.8rem;
+}
+.social-link:hover { border-color: var(--accent); color: var(--accent); }
+
+footer {
+  padding: 4rem 0; border-top: 1px solid var(--border);
+  text-align: center; font-size: 0.7rem; color: var(--text-faint);
+}
+
+/* ---------- Responsive ---------- */
+@media (max-width: 900px) {
+  .hero-layout, .about-grid, .contact-grid, .project-entry, .featured-project {
+    grid-template-columns: 1fr;
   }
-  .nav-links.open{transform:translateX(0);}
-  .nav-links a{font-size:1rem;}
-  .nav-links .resume-link{width:100%; text-align:center;}
-  .hero{padding:4rem 0 3rem; min-height:auto;}
-  .hero h1{font-size:2rem;}
-  .hero-stats{gap:1.4rem;}
-  .stat .num{font-size:1.2rem;}
-  section{padding:4rem 0;}
-  .terminal-body{min-height:auto;}
-  .hero-ctas .btn{flex:1; justify-content:center;}
-  .research-card{padding:1.5rem;}
+  .hero-annotations { border-left: none; border-top: 1px solid var(--border); padding: 2rem 0 0 0; }
+  .hero-main h1 { font-size: 2.5rem; }
+  .project-meta { margin-bottom: 1rem; }
 }
 </style>
 </head>
 <body>
-<div class="grain"></div>
+
+<div class="boot-screen" id="bootScreen">
+  <div class="boot-content" id="bootContent"></div>
+</div>
 
 <header>
   <nav>
     <a href="#home" class="logo"><span class="dot"></span>chetanaditya<span class="path">.ai</span></a>
-    <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu" aria-expanded="false">
-      <span></span><span></span><span></span>
-    </button>
-    <ul class="nav-links" id="navLinks">
+    <ul class="nav-links">
       <li><a href="#about">about</a></li>
       <li><a href="#research">research</a></li>
       <li><a href="#projects">projects</a></li>
@@ -331,210 +253,232 @@ footer p{font-family:var(--mono); font-size:0.78rem; color:var(--text-faint);}
 </header>
 
 <section class="hero" id="home">
-  <div class="wrap hero-grid">
-    <div>
-      <div class="eyebrow"><span class="blink"></span>OPEN TO INTERNSHIPS · AI / ML / GENAI</div>
-      <h1>Building AI systems that <span class="accent">reason, retrieve,<br>and act.</span></h1>
-      <div class="role-line">
-        <span>Agentic AI</span><span>Generative AI</span><span>LLMs</span><span>RAG</span><span>NLP</span>
-      </div>
-      <p class="lede">
-         Computer Science graduate and published ML researcher. I design autonomous agents and retrieval-grounded systems that turn raw language into reliable, verifiable decisions.
-      </p>
+  <div class="wrap hero-layout">
+    <div class="hero-main">
+      <h1>Building AI that <span>reasons, retrieves, & acts.</span></h1>
+      <p class="lede">Computer Science graduate and published ML researcher. I design autonomous agents and retrieval-grounded systems that turn raw language into reliable, verifiable decisions.</p>
       <div class="hero-ctas">
         <a href="#projects" class="btn primary">View Projects</a>
         <a href="#contact" class="btn ghost">Get In Touch</a>
       </div>
-      <div class="hero-stats">
-        <div class="stat"><div class="num">96.4<span class="unit">%</span></div><div class="label">model accuracy<br>(fake news detection)</div></div>
-        <div class="stat"><div class="num">1<span class="unit">×</span></div><div class="label">published<br>research paper</div></div>
-        <div class="stat"><div class="num">2<span class="unit">+</span></div><div class="label">full-stack<br>AI systems shipped</div></div>
-      </div>
     </div>
-
-    <div class="terminal" aria-hidden="true">
-      <div class="terminal-bar">
-        <span class="tdot"></span><span class="tdot"></span><span class="tdot"></span>
-        <span class="ttitle">agent_profile.log</span>
+    <div class="hero-annotations">
+      <div class="annotation">
+        <span class="val">96.4%</span>
+        <span class="lbl">Model Accuracy (News Det.)</span>
       </div>
-      <div class="terminal-body" id="termBody"></div>
+      <div class="annotation">
+        <span class="val">01</span>
+        <span class="lbl">Published Paper</span>
+      </div>
+      <div class="annotation">
+        <span class="val">02+</span>
+        <span class="lbl">AI Systems Shipped</span>
+      </div>
     </div>
   </div>
 </section>
-
-<hr class="divider">
 
 <section id="about">
   <div class="wrap">
-    <div class="section-head reveal">
-      <span class="tag-label">about</span>
-      <h2>From research to working systems</h2>
-    </div>
+    <span class="section-label">// 01_about</span>
+    <h2>From research to working systems</h2>
     <div class="about-grid">
-      <div class="about-text reveal">
-        <p> I'm <strong> Chetanaditya Neelam </strong>Computer Science graduate specializing in Agentic AI, Generative AI, and Machine Learning. My work sits at the intersection of NLP research and applied system-building — I don't just train models, I ship them as full systems people can actually use.</p>
-        <p>My published research on <strong>fake news detection and verification</strong> combines BERT embeddings, TF-IDF, and ensemble classifiers to reach 96.4% accuracy, paired with an autonomous claim-verification agent that cross-checks facts against live sources in real time.</p>
-        <p>I'm currently looking for internship opportunities in <strong>Agentic AI, Generative AI, Machine Learning, NLP, and AI research</strong> — anywhere I can build systems that need to be both intelligent and trustworthy.</p>
-
-        <div class="highlight-card">
-          <span class="hc-icon">[01]</span>
-          <div class="hc-body"><strong>Research-backed</strong><span>Published work in ML-driven misinformation detection, peer-reviewed methodology.</span></div>
+      <div class="about-text">
+        <p>I'm <strong>Chetanaditya Neelam</strong>, a Computer Science graduate specializing in Agentic AI, Generative AI, and Machine Learning. My work sits at the intersection of NLP research and applied system-building.</p>
+        <p>My published research on <strong>fake news detection and verification</strong> combines BERT embeddings and ensemble classifiers, paired with an autonomous agent that cross-checks facts against live sources in real time.</p>
+        <p>I'm currently seeking internship opportunities in <strong>Agentic AI, GenAI, and AI research</strong>.</p>
+      </div>
+      <div class="module-grid">
+        <div class="module">
+          <h3>Research-backed</h3>
+          <p>Published work in ML-driven misinformation detection, peer-reviewed methodology.</p>
         </div>
-        <div class="highlight-card">
-          <span class="hc-icon">[02]</span>
-          <div class="hc-body"><strong>Systems-first</strong><span>Every model I build ships inside a real, end-to-end application — not just a notebook.</span></div>
+        <div class="module">
+          <h3>Systems-first</h3>
+          <p>Every model I build ships inside a real, end-to-end application — not just a notebook.</p>
         </div>
       </div>
-
-      <div class="skills-block reveal">
-        <h3>Skills & Stack</h3>
-        <div class="skill-groups">
-          <div>
-            <div class="skill-group-label">AI / ML</div>
-            <div class="skills">
-              <span class="skill-tag">LangChain</span>
-              <span class="skill-tag">Hugging Face</span>
-              <span class="skill-tag">TensorFlow</span>
-              <span class="skill-tag">Scikit-Learn</span>
-              <span class="skill-tag">FAISS</span>
-              <span class="skill-tag">Prompt Engineering</span>
-            </div>
-          </div>
-          <div>
-            <div class="skill-group-label">Engineering</div>
-            <div class="skills">
-              <span class="skill-tag">Python</span>
-              <span class="skill-tag">FastAPI</span>
-              <span class="skill-tag">React</span>
-              <span class="skill-tag">SQL</span>
-              <span class="skill-tag">Git</span>
-            </div>
-          </div>
-        </div>
+    </div>
+    <div class="skills-block">
+      <div class="skill-row">
+        <span>AI/ML:</span>
+        <span class="skill-tag">LangChain</span>
+        <span class="skill-tag">Hugging Face</span>
+        <span class="skill-tag">TensorFlow</span>
+        <span class="skill-tag">Scikit-Learn</span>
+        <span class="skill-tag">FAISS</span>
+        <span class="skill-tag">Prompt Engineering</span>
+      </div>
+      <div class="skill-row">
+        <span>Engineering:</span>
+        <span class="skill-tag">Python</span>
+        <span class="skill-tag">FastAPI</span>
+        <span class="skill-tag">React</span>
+        <span class="skill-tag">SQL</span>
+        <span class="skill-tag">Git</span>
       </div>
     </div>
   </div>
 </section>
-
-<hr class="divider">
 
 <section id="research">
   <div class="wrap">
-    <div class="section-head reveal">
-      <span class="tag-label">research</span>
-      <h2>Published research</h2>
-    </div>
-    <div class="research-card reveal">
-      <span class="r-badge">PUBLISHED</span>
-      <div>
+    <span class="section-label">// 02_research</span>
+    <h2>Published Research</h2>
+    <div class="publication">
+      <div class="pub-meta">
+        <span>STATUS: <b>PUBLISHED</b></span>
+        <span>METHOD: <b>BERT + TF-IDF</b></span>
+        <span>ACCURACY: <b>96.4%</b></span>
+      </div>
+      <div class="pub-body">
         <h3>Fake News Detection & Verification using Machine Learning</h3>
-        <p>A hybrid NLP pipeline combining BERT embeddings, TF-IDF feature extraction, and ensemble classifiers to detect misleading news content — paired with an autonomous claim-verification agent that cross-checks facts against live sources in real time. The work demonstrates how AI-driven verification can support faster, more trustworthy digital communication.</p>
-        <div class="research-meta">
-          <div><span class="rm-num">96.4%</span><span class="rm-label">Accuracy</span></div>
-          <div><span class="rm-num">BERT+TF-IDF</span><span class="rm-label">Approach</span></div>
-          <div><span class="rm-num">Real-time</span><span class="rm-label">Claim verification</span></div>
-        </div>
+        <p>A hybrid NLP pipeline combining BERT embeddings, TF-IDF feature extraction, and ensemble classifiers to detect misleading news content — paired with an autonomous claim-verification agent that cross-checks facts against live sources in real time.</p>
       </div>
     </div>
   </div>
 </section>
-
-<hr class="divider">
 
 <section id="projects">
   <div class="wrap">
-    <div class="section-head reveal">
-      <span class="tag-label">projects</span>
-      <h2>Selected work</h2>
-    </div>
-    <div class="projects-grid">
-      <div class="project-card reveal">
-        <div class="project-head">
-          <span class="p-icon">project_01</span>
-          <span class="p-status">SUCCESSFULLY DEPLOYED</span>
-        </div>
-        <div class="project-body">
+    <span class="section-label">// 03_projects</span>
+    <h2>Selected Work</h2>
+    <div class="projects-container">
+
+      <div class="featured-project">
+        <div>
+          <span class="project-version">v1.0_STABLE</span>
           <h3>Fake News Detection & Verification</h3>
-          <p>Full-stack ML system that analyzes news content and flags misleading information in real time. Built on the underlying research published on BERT + TF-IDF ensemble classification, wrapped in a usable interface for end-to-end verification.</p>
-          <div class="project-tags">
-            <span class="ptag">Python</span><span class="ptag">NLP</span><span class="ptag">React</span>
-          </div>
-          <div class="project-links">
-            <a href="https://fake-news-detector-fullstack.vercel.app/">Source</a>
+          <p>Full-stack ML system that analyzes news content and flags misleading information in real time. Built on published BERT + TF-IDF ensemble classification, wrapped in a usable interface for end-to-end verification.</p>
+          <div class="project-footer">
+            <a href="https://fake-news-detector-fullstack.vercel.app/" class="btn primary">Live Application</a>
+            <div class="tech-stack">
+              <span class="tech-pill">Python</span>
+              <span class="tech-pill">NLP</span>
+              <span class="tech-pill">React</span>
+            </div>
           </div>
         </div>
-      </div>
-
-      <div class="project-card reveal">
-        <div class="project-head">
-          <span class="p-icon">project_02</span>
-          <span class="p-status">CURRENTLY UNDER DEVELOPMENT</span>
-        </div>
-        <div class="project-body">
-          <h3>Agentic RAG-Powered Document Assistant</h3>
-          <p>Document-grounded Q&A system: accepts user-uploaded files, extracts and indexes content, retrieves relevant passages per query, and generates grounded answers via a local LLM — complete with source citations to keep every answer verifiable.</p>
-          <div class="project-tags">
-            <span class="ptag">Python</span><span class="ptag">FastAPI</span><span class="ptag">RAG</span><span class="ptag">React.js</span>
+        <div style="border: 1px solid var(--border); padding: 1rem; background: rgba(0,0,0,0.3);">
+          <div class="annotation" style="margin-bottom: 1rem;">
+            <span class="val">96.4%</span>
+            <span class="lbl">Verification Accuracy</span>
           </div>
-          <div class="project-links">
-            <a href="https://github.com/Chetanaditya/agentic-document-qa-system">Source</a>
+          <div class="annotation">
+            <span class="val">Hybrid</span>
+            <span class="lbl">BERT / TF-IDF Architecture</span>
           </div>
         </div>
       </div>
 
-      <div class="project-card reveal">
-        <div class="project-head">
-          <span class="p-icon">project_03</span>
-          <span class="p-status">CURRENTLY UNDER DEVELOPMENT</span>
+      <div class="project-entry">
+        <div class="project-meta">
+          <span class="project-version">v0.8_BETA</span>
+          <span class="project-status">IN DEVELOPMENT</span>
         </div>
-        <div class="project-body">
+        <div class="project-main">
+          <h3>Agentic RAG Document Assistant</h3>
+          <p>Document-grounded Q&A system: accepts user-uploaded files, indexes content via FAISS, and generates grounded answers via a local LLM with source citations.</p>
+          <div class="project-footer">
+            <a href="https://github.com/Chetanaditya/agentic-document-qa-system" class="btn ghost">Source Code</a>
+            <div class="tech-stack">
+              <span class="tech-pill">Python</span>
+              <span class="tech-pill">FastAPI</span>
+              <span class="tech-pill">RAG</span>
+              <span class="tech-pill">React.js</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="project-entry">
+        <div class="project-meta">
+          <span class="project-version">v0.4_ALPHA</span>
+          <span class="project-status">IN DEVELOPMENT</span>
+        </div>
+        <div class="project-main">
           <h3>Invoice Pilot</h3>
-          <p>Natural-language invoicing tool: describe who owes what in plain English and it typesets a full invoice — line items, tax, discounts, and due dates — then lets you refine it with follow-up instructions instead of hunting through form fields.</p>
-          <div class="project-tags">
-            <span class="ptag">Python</span><span class="ptag">FastAPI</span><span class="ptag">LLM</span><span class="ptag">JavaScript</span>
-          </div></div>
+          <p>Natural-language invoicing tool: describe who owes what in plain English and it typesets a full invoice with tax and discounts, refined via follow-up instructions.</p>
+          <div class="project-footer">
+            <a href="#" class="btn ghost">Upcoming</a>
+            <div class="tech-stack">
+              <span class="tech-pill">Python</span>
+              <span class="tech-pill">FastAPI</span>
+              <span class="tech-pill">LLM</span>
+              <span class="tech-pill">JavaScript</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
     </div>
   </div>
 </section>
 
-<hr class="divider">
-
 <section id="contact">
-  <div class="wrap contact-inner">
-    <span class="tag-label">contact</span>
-    <h2>Let's build something intelligent</h2>
-    <p class="lede">Open to internships and collaborations in Agentic AI, Generative AI, and applied NLP research. Reach out — I reply fast.</p>
-    <div class="contact-ctas">
-      <a href="mailto:chetanaditya7253@gmail.com" class="btn primary">Send an Email</a>
-    </div>
-    <div class="social-row">
-      <a href="https://github.com/Chetanaditya" class="social-link" title="GitHub">GH</a>
-      <a href="https://linkedin.com/in/chetanaditya-neelam-a1703a259" class="social-link" title="LinkedIn">LI</a>
-      <a href="https://www.instagram.com/chilipi.chetannnnn_" class="social-link" title="Instagram">IG</a>
+  <div class="wrap">
+    <div class="contact-grid">
+      <div class="contact-info">
+        <span class="section-label">// 04_contact</span>
+        <h2>Let's build something intelligent</h2>
+        <p>Open to internships and collaborations in Agentic AI, Generative AI, and applied NLP research. Reach out — I reply fast.</p>
+        <div class="social-links">
+          <a href="https://github.com/Chetanaditya" class="social-link">GitHub</a>
+          <a href="https://linkedin.com/in/chetanaditya-neelam-a1703a259" class="social-link">LinkedIn</a>
+          <a href="https://www.instagram.com/chilipi.chetannnnn_" class="social-link">Instagram</a>
+        </div>
+      </div>
+      <div class="contact-cta">
+        <a href="mailto:chetanaditya7253@gmail.com" class="btn primary" style="display: block; text-align: center; font-size: 1.2rem; padding: 1.5rem;">Send an Email</a>
+      </div>
     </div>
   </div>
 </section>
 
 <footer>
-  <p>// chetanaditya neelam — designed & built with intent · 2026</p>
+  <div class="wrap">
+    <p>// chetanaditya neelam — engineered with precision · 2026</p>
+  </div>
 </footer>
 
 <script>
-  // mobile menu
-  const toggle = document.getElementById('menuToggle');
-  const navLinks = document.getElementById('navLinks');
-  toggle.addEventListener('click', () => {
-    const isOpen = navLinks.classList.toggle('open');
-    toggle.classList.toggle('open');
-    toggle.setAttribute('aria-expanded', isOpen);
-  });
-  navLinks.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
-    navLinks.classList.remove('open');
-    toggle.classList.remove('open');
-    toggle.setAttribute('aria-expanded', 'false');
-  }));
+  // System Boot Sequence
+  const bootLines = [
+    { t: '> INITIALIZING SYSTEM...', d: 200 },
+    { t: '> LOADING KERNEL: AGENTIC_OS_V4', d: 400 },
+    { t: '> MOUNTING RESEARCH_DB... SUCCESS', d: 300 },
+    { t: '> VERIFYING IDENTITY: chetanaditya.ai', d: 300 },
+    { t: '> LOADING PROJECT_MANIFEST...', d: 400 },
+    { t: '> STATUS: READY', d: 200 },
+    { t: '> ACCESS GRANTED. WELCOME.', d: 600 },
+  ];
 
-  // active nav highlighting
+  const bootContent = document.getElementById('bootContent');
+  const bootScreen = document.getElementById('bootScreen');
+  let lineIdx = 0;
+
+  function runBoot() {
+    if (lineIdx >= bootLines.length) {
+      setTimeout(() => {
+        bootScreen.style.transition = 'opacity 0.8s ease';
+        bootScreen.style.opacity = '0';
+        setTimeout(() => bootScreen.remove(), 800);
+      }, 500);
+      return;
+    }
+    const line = bootLines[lineIdx];
+    const div = document.createElement('div');
+    div.className = 'boot-line';
+    div.textContent = line.t;
+    bootContent.appendChild(div);
+    lineIdx++;
+    setTimeout(runBoot, line.d);
+  }
+
+  window.addEventListener('DOMContentLoaded', runBoot);
+
+  // Active nav highlighting
   const sections = document.querySelectorAll('section[id]');
   const navAnchors = document.querySelectorAll('.nav-links a[href^="#"]');
   window.addEventListener('scroll', () => {
@@ -546,52 +490,6 @@ footer p{font-family:var(--mono); font-size:0.78rem; color:var(--text-faint);}
       a.classList.toggle('active', a.getAttribute('href') === '#' + current);
     });
   });
-
-  // scroll reveal
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); observer.unobserve(e.target); } });
-  }, { threshold: 0.12, rootMargin: '0px 0px -60px 0px' });
-  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
-
-  // terminal typing sequence
-  const lines = [
-    {p:'$', t:'whoami'},
-    {k:'name', v:'Chetanaditya Neelam'},
-    {k:'role', v:'AI / ML Engineer'},
-    {k:'focus', v:'Agentic AI · GenAI · RAG · NLP'},
-    {p:'$', t:'cat publications.log'},
-    {k:'paper', v:'Fake News Detection & Verification (ML)'},
-    {k:'accuracy', v:'96.4%'},
-    {p:'$', t:'status --check'},
-    {muted:'> seeking internship: AI / ML / GenAI roles'},
-  ];
-  const body = document.getElementById('termBody');
-  let i = 0;
-  function typeNext(){
-    if(i >= lines.length){
-      const cur = document.createElement('div');
-      cur.className = 'terminal-line';
-      cur.style.opacity = 1;
-      cur.innerHTML = '<span class="prompt">$</span> <span class="cursor-blink"></span>';
-      body.appendChild(cur);
-      return;
-    }
-    const item = lines[i];
-    const div = document.createElement('div');
-    div.className = 'terminal-line' + (item.muted ? ' muted' : '');
-    if(item.p){
-      div.innerHTML = `<span class="prompt">${item.p}</span> ${item.t}`;
-    } else if (item.muted){
-      div.textContent = item.muted;
-    } else {
-      div.innerHTML = `<span class="key">${item.k}:</span> <span class="val">${item.v}</span>`;
-    }
-    body.appendChild(div);
-    i++;
-    setTimeout(typeNext, item.p ? 280 : 380);
-  }
-  setTimeout(typeNext, 400);
 </script>
-
 </body>
 </html>
